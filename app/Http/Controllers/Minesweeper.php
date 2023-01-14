@@ -93,6 +93,10 @@ class Minesweeper extends Controller
     {
         $gridSize = $request->get('gridSize');
         $mineCount = $request->get('mineCount');
+        $request->validate([
+            'gridSize' => ['required', 'integer', 'min:'.Game::MIN_GRID_SIZE, 'max:'.Game::MAX_GRID_SIZE],
+            'mineCount' => 'required|integer|min:1|max:' . $gridSize * $gridSize,
+        ]);
         $mineGame = new Game($gridSize, $mineCount, true);
         $request->session()->put('game', $mineGame);
 
