@@ -62,6 +62,9 @@ class Minesweeper extends Controller
     public function gameActivateCell(Request $request)
     {
         $mineGame = $request->session()->get('game');
+        $request->validate([
+            'squareId' => 'required|integer|min:0|max:' . $mineGame->squareCount,
+        ]);
         $squareId = $request->get('squareId');
         $square = $mineGame->getSquareUsingSquareId($squareId);
         $blankSquaresToReveal = [];

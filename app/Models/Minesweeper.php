@@ -28,7 +28,7 @@ class Minesweeper extends Model
     //Define class properties
     public $gridSize = 8;
     protected $mineCount = 10;
-    protected $squareCount = 0;
+    public $squareCount = 0;
 
     public $gameGrid = [];
     public $mineLocations = [];
